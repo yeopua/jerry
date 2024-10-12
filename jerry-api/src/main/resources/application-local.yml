@@ -1,0 +1,10 @@
+server:
+  port: 8080
+  shutdown: graceful
+
+logging:
+  config: classpath:log4j2-local.yml
+
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
