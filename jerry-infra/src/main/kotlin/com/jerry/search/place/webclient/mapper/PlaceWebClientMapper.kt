@@ -13,11 +13,14 @@ import toNonEmptyString
 class PlaceWebClientMapper {
     fun toDomain(
         placeWebClientResponseForKakao: PlaceWebClientResponseForKakao
-    ): Either<CommonError.ConversionError, Place> = either {
-        Place(
-            name = placeWebClientResponseForKakao.name.toNonEmptyString().bind(),
-            address = placeWebClientResponseForKakao.address.toNonEmptyString().bind()
-        )
+    ): Either<CommonError.ConversionError, List<Place>> = either {
+        placeWebClientResponseForKakao.documents
+            .map {
+                Place(
+                    address = it.addressName.toNonEmptyString().bind(),
+                    name = it.placeName.toNonEmptyString().bind()
+                )
+            }
     }
 
     fun toDomain(

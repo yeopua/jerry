@@ -1,6 +1,6 @@
 package com.jerry.common.webclient.openapi.naver
 
-import com.jerry.common.webclient.openapi.HostUri
+import com.jerry.common.webclient.HostUri
 import com.jerry.common.webclient.openapi.kakao.KakaoHostUri
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
@@ -19,5 +19,5 @@ enum class NaverHostUri(
 }
 
 fun KakaoHostUri.toHostUri(): HostUri {
-    return HostUri(key, uri, timeout, KakaoHostUri.DOMAIN)
+    return HostUri(uri, timeout, KakaoHostUri.DOMAIN)
 }

@@ -1,6 +1,6 @@
 package com.jerry.common.webclient.openapi.kakao
 
-import com.jerry.common.webclient.openapi.HostUri
+import com.jerry.common.webclient.HostUri
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
@@ -18,5 +18,5 @@ enum class KakaoHostUri(
 }
 
 fun KakaoHostUri.toHostUri(): HostUri {
-    return HostUri(key, uri, timeout, KakaoHostUri.DOMAIN)
+    return HostUri(uri, timeout, KakaoHostUri.DOMAIN)
 }
