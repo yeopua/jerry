@@ -8,3 +8,16 @@ logging:
 spring:
   lifecycle:
     timeout-per-shutdown-phase: 30s
+
+webclient:
+  config:
+    max-in-memory-size: 1024
+    max-connections: 1000
+    pending-acquire-timeout: 0
+    pending-acquire-max-count: -1
+    max-idle-time: 5000
+    max-life-time: 15000
+    response-timeout: 10000
+    connect-read-timeout: 10000
+    connect-write-timeout: 10000
+    connect-channel-option-timeout: 3000

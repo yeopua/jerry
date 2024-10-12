@@ -5,17 +5,18 @@ import arrow.core.Either
 import arrow.core.raise.either
 import com.jerry.search.place.domain.Place
 import com.jerry.search.place.repository.FindAllPlaceByKeywordRepository
-import com.jerry.search.place.webclient.mapper.PlaceWebClientMapper
-import com.jerry.search.place.webclient.response.PlaceWebClientResponse
 import org.springframework.stereotype.Repository
+import toNonEmptyString
 
 @Repository
 class FindAllPlaceByKeywordWebClientAdapter(
-    private val placeWebClientMapper: PlaceWebClientMapper
+    private val findAllPlaceByKeywordWebClientAdapterForKakao: FindAllPlaceByKeywordWebClientAdapterForKakao,
+    private val findAllPlaceByKeywordWebClientAdapterForNaver: FindAllPlaceByKeywordWebClientAdapterForNaver
 ) : FindAllPlaceByKeywordRepository {
     override suspend fun invoke(keyword: String): Either<CommonError, Place> = either {
-        placeWebClientMapper.toDomain(
-            placeWebClientResponse = PlaceWebClientResponse(name = "name", address = "address")
-        ).bind()
+        Place("name".toNonEmptyString().bind(), "address".toNonEmptyString().bind())
+//        placeWebClientMapper.toDomain(
+//            placeWebClientResponse = PlaceWebClientResponse(name = "name", address = "address")
+//        ).bind()
     }
 }

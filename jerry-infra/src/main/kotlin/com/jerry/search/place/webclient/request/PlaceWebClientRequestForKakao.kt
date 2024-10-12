@@ -1,8 +1,8 @@
 package com.jerry.search.place.webclient.request
 
-import com.jerry.common.webclient.HostUri
+import com.jerry.common.webclient.openapi.HostUri
 
-class PlaceWebClientRequest(
+class PlaceWebClientRequestForKakao(
     val hostUri: HostUri,
     val queryParams: QueryParams
 ) {
