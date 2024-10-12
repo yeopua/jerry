@@ -1,0 +1,2 @@
+### Search Place By Keyword
+GET http://localhost:8080/search/place?keyword=keyword
