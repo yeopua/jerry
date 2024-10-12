@@ -1,7 +1,7 @@
 package com.jerry.common.webclient.openapi.naver
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.jerry.common.webclient.openapi.RequestHeader
+import com.jerry.common.webclient.RequestHeader
 
 class NaverRequestHeader private constructor(
     @JsonProperty("X-Naver-Client-Id")

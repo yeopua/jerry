@@ -1,2 +1,11 @@
 ### Search Place By Keyword
-GET http://localhost:8080/search/place?keyword=keyword
+GET http://localhost:8080/search/place?keyword=맛집
+
+### KAKAO OpenAPI (Search Place By Keyword)
+GET https://dapi.kakao.com/v2/local/search/keyword.json?query=맛집&size=5
+Authorization: KakaoAK 4d37dec15606fd91f635a35366d1ac78
+
+### NAVER OpenAPI (Search Place By Keyword
+GET https://openapi.naver.com/v1/search/local.json?query=고우가 광화문점&display=5
+X-Naver-Client-Id: AcibdRgGB6JzpuDbxIfg
+X-Naver-Client-Secret: oJfavmnywk

@@ -1,8 +1,11 @@
 package com.jerry.common.webclient.openapi
 
+import JsonUtils.toMultiValueMap
 import arrow.core.Either
 import arrow.core.left
 import arrow.core.raise.either
+import com.jerry.common.webclient.HostUri
+import com.jerry.common.webclient.RequestHeader
 import com.jerry.config.WebClientConfiguration.Companion.MEGA_BYTE
 import kotlinx.coroutines.reactor.awaitSingle
 import org.springframework.beans.factory.annotation.Value
@@ -15,6 +18,7 @@ import org.springframework.util.MultiValueMap
 import org.springframework.web.reactive.function.client.ExchangeStrategies
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.bodyToMono
+import org.springframework.web.util.UriUtils
 import reactor.core.publisher.Mono
 import kotlin.reflect.KClass
 import kotlin.time.toJavaDuration
@@ -41,7 +45,18 @@ class OpenApiWebClient(
     ): Either<OpenApiWebClientError, R> =
         openApiWebClient
             .get()
-            .uri(hostUri.domain) { it.path(hostUri.uri).queryParams(queryParams).build() }
+            .uri(hostUri.domain) {
+                it.path(hostUri.uri).queryParams(UriUtils.encodeQueryParams(queryParams)).build()
+            }
+            .headers { httpHeaders ->
+                println("${header.accessToken}")
+                println(header.toMultiValueMap())
+                header.toMultiValueMap().getOrNull()?.let {
+                    println(it)
+                    httpHeaders.addAll(it)
+                }
+                httpHeaders.accept = listOf(MediaType.APPLICATION_JSON)
+            }
             .retrieve()
             .onStatus({ !it.is2xxSuccessful }) { response ->
                 response.bodyToMono<String>().flatMap { body ->

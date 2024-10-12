@@ -1,6 +1,6 @@
 package com.jerry.search.place.webclient.request
 
-import com.jerry.common.webclient.openapi.HostUri
+import com.jerry.common.webclient.HostUri
 
 class PlaceWebClientRequestForNaver(
     val hostUri: HostUri,
