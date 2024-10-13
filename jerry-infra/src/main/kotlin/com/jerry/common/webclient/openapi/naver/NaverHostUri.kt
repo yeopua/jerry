@@ -10,7 +10,7 @@ enum class NaverHostUri(
     val uri: String,
     val timeout: Duration
 ) {
-    SEARCH_PLACES_BY_KEYWORD("search-places-by-keyword", "/v2/local/search/keyword.json", 5.seconds)
+    SEARCH_PLACES_BY_KEYWORD("search-places-by-keyword", "/v1/search/local.json", 5.seconds)
     ;
 
     companion object {
@@ -18,6 +18,6 @@ enum class NaverHostUri(
     }
 }
 
-fun KakaoHostUri.toHostUri(): HostUri {
-    return HostUri(uri, timeout, KakaoHostUri.DOMAIN)
+fun NaverHostUri.toHostUri(): HostUri {
+    return HostUri(uri, timeout, NaverHostUri.DOMAIN)
 }

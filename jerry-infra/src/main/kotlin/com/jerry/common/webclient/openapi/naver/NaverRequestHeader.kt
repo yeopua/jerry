@@ -1,11 +1,10 @@
 package com.jerry.common.webclient.openapi.naver
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.jerry.common.webclient.RequestHeader
 
-class NaverRequestHeader private constructor(
+class NaverRequestHeader(
     @JsonProperty("X-Naver-Client-Id")
-    override val id: String,
+    val id: String = "AcibdRgGB6JzpuDbxIfg",
     @JsonProperty("X-Naver-Client-Secret")
-    override val secret: String
-) : RequestHeader(id = id, secret = secret)
+    val secret: String= "oJfavmnywk"
+)

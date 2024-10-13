@@ -14,5 +14,6 @@ class FindAllPlaceByKeywordWebClientAdapter(
 ) : FindAllPlaceByKeywordRepository {
     override suspend fun invoke(keyword: String): Either<CommonError, List<Place>> = either {
         findAllPlaceByKeywordWebClientAdapterForKakao.invoke(keyword).bind()
+        findAllPlaceByKeywordWebClientAdapterForNaver.invoke(keyword).bind()
     }
 }
