@@ -11,12 +11,12 @@ import kotlin.reflect.KClass
 
 @Service
 class KakaoWebClient(
-    private val webClient: OpenApiWebClient,
+    private val webClient: OpenApiWebClient
 ) {
     private val header = KakaoRequestHeader()
     private val mapper = WebClientObjectMapper.kakao
 
-    suspend fun <R: Any> executeGet(
+    suspend fun <R : Any> executeGet(
         kakaoHostUri: KakaoHostUri,
         queryParams: Any?,
         responseKClass: KClass<R>

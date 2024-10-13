@@ -1,7 +1,6 @@
 package com.jerry.search.place.webclient.request
 
 import com.jerry.common.webclient.HostUri
-import com.jerry.common.webclient.openapi.kakao.KakaoHostUri
 import com.jerry.common.webclient.openapi.kakao.toHostUri
 import com.jerry.common.webclient.openapi.naver.NaverHostUri
 import com.jerry.common.webclient.openapi.naver.toHostUri

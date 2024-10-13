@@ -70,7 +70,6 @@ class OpenApiWebClient(
             .let { webClient.mutate().exchangeStrategies(it).build() }
 }
 
-
 sealed class OpenApiWebClientError {
     abstract val message: String
     data class UnknownError(override val message: String) : OpenApiWebClientError()
