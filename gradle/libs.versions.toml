@@ -20,6 +20,8 @@ commons-lang = "3.15.0"
 netty-resolver-dns-native-macos = "4.1.114.Final"
 osdetector = "1.7.3"
 slf4j-api = "2.0.7"
+h2-database-r2dbc = "1.0.0.RELEASE"
+h2-database = "2.3.232"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -31,6 +33,7 @@ ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
 detector = { id = "com.google.osdetector", version.ref = "osdetector" }
 
 [libraries]
+springboot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web", version.ref = "springboot" }
 springboot-starter-webflux = { group = "org.springframework.boot", name = "spring-boot-starter-webflux", version.ref = "springboot" }
 springboot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test", version.ref = "springboot" }
 springboot-starter-data-r2dbc = { group = "org.springframework.boot", name = "spring-boot-starter-data-r2dbc", version.ref = "springboot" }
@@ -60,3 +63,5 @@ resilience4j-springboot = { group = "io.github.resilience4j", name = "resilience
 apache-commons-lang = { group = "org.apache.commons", name = "commons-lang3", version.ref = "commons-lang" }
 netty-resolver-dns-native-macos = { group = "io.netty", name = "netty-resolver-dns-native-macos", version.ref = "netty-resolver-dns-native-macos" }
 slf4j-api = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j-api" }
+h2-database-r2dbc = { group = "io.r2dbc", name = "r2dbc-h2", version.ref = "h2-database-r2dbc" }
+h2-database = { group = "com.h2database", name = "h2", version.ref = "h2-database" }

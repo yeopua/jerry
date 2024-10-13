@@ -12,7 +12,7 @@ import org.springframework.http.MediaType
 import org.springframework.http.codec.json.Jackson2JsonDecoder
 import org.springframework.http.codec.json.Jackson2JsonEncoder
 import org.springframework.stereotype.Service
-import org.springframework.util.LinkedMultiValueMap
+import org.springframework.util.MultiValueMap
 import org.springframework.web.reactive.function.client.ExchangeStrategies
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.bodyToMono
@@ -27,10 +27,10 @@ class OpenApiWebClient(
     @Value("\${webclient.config.max-in-memory-size}") private val maxInMemorySize: Int
 ) {
     suspend fun <R : Any> executeGet(
-        header: LinkedMultiValueMap<String, String>? = LinkedMultiValueMap(),
+        header: MultiValueMap<String, String>,
         hostUri: HostUri,
         mapper: ObjectMapper,
-        queryParams: LinkedMultiValueMap<String, String>? = LinkedMultiValueMap(),
+        queryParams: MultiValueMap<String, String>,
         responseKClass: KClass<R>
     ): Either<OpenApiWebClientError, R> =
         getOpenApiWebClient(mapper)

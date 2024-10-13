@@ -1,4 +1,5 @@
 
+import arrow.core.Either
 import arrow.core.raise.catch
 import arrow.core.raise.either
 import com.fasterxml.jackson.annotation.JsonInclude
@@ -8,6 +9,7 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategies
 import com.fasterxml.jackson.module.kotlin.convertValue
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.springframework.util.LinkedMultiValueMap
+import org.springframework.util.MultiValueMap
 
 object JsonUtils {
     private var mapper: ObjectMapper = jacksonObjectMapper().apply {
@@ -21,27 +23,27 @@ object JsonUtils {
         configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
     }
 
-    fun Any?.toMultiValueMap() = either {
+    fun Any?.toMultiValueMap(): Either<JsonUtilsError.ParseFail, MultiValueMap<String, String>> = either {
         catch({
             this@toMultiValueMap?.let {
                 mapper.convertValue<Map<String, String>>(it).let {
                     LinkedMultiValueMap<String, String>().apply { setAll(it) }
                 }
-            }
+            } ?: LinkedMultiValueMap()
         }) {
             getLogger().error("[JsonUtils][toMultiValueMap] Object to multiValueMap convert error: ${it.message}")
             raise(JsonUtilsError.ParseFail("JsonUtils toMultiValueMap Error"))
         }
     }
 
-    fun Any?.toSnakeCaseMultiValueMap() = either {
+    fun Any?.toSnakeCaseMultiValueMap(): Either<JsonUtilsError.ParseFail, MultiValueMap<String, String>> = either {
         catch({
             this@toSnakeCaseMultiValueMap?.let {
                 snakeCaseMapper
                     .convertValue<Map<String, String>>(it).let {
                         LinkedMultiValueMap<String, String>().apply { setAll(it) }
                     }
-            }
+            } ?: LinkedMultiValueMap()
         }) {
             getLogger().error("[JsonUtils][toSnakeCaseMultiValueMap] Object to multiValueMap convert error : ${it.message}", it)
             raise(JsonUtilsError.ParseFail("JsonUtils toSnakeCaseMultiValueMap Error"))
