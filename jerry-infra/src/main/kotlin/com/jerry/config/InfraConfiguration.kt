@@ -4,7 +4,9 @@ import org.springframework.context.annotation.Import
 
 @Import(
     value = [
-        WebClientConfiguration::class
+        WebClientConfiguration::class,
+        R2dbcConfiguration::class,
+        H2ConsoleConfiguration::class
     ]
 )
 class InfraConfiguration
