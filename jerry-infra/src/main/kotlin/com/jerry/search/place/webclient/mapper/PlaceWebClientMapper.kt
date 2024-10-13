@@ -25,10 +25,13 @@ class PlaceWebClientMapper {
 
     fun toDomain(
         placeWebClientResponseForNaver: PlaceWebClientResponseForNaver
-    ): Either<CommonError.ConversionError, Place> = either {
-        Place(
-            name = placeWebClientResponseForNaver.name.toNonEmptyString().bind(),
-            address = placeWebClientResponseForNaver.address.toNonEmptyString().bind()
-        )
+    ): Either<CommonError.ConversionError, List<Place>> = either {
+        placeWebClientResponseForNaver.items
+            .map {
+                Place(
+                    address = it.address.toNonEmptyString().bind(),
+                    name = it.title.toNonEmptyString().bind()
+                )
+            }
     }
 }

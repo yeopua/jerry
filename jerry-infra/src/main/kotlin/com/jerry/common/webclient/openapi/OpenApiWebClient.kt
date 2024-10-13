@@ -1,11 +1,10 @@
 package com.jerry.common.webclient.openapi
 
-import JsonUtils.toMultiValueMap
 import arrow.core.Either
 import arrow.core.left
 import arrow.core.raise.either
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.jerry.common.webclient.HostUri
-import com.jerry.common.webclient.RequestHeader
 import com.jerry.config.WebClientConfiguration.Companion.MEGA_BYTE
 import kotlinx.coroutines.reactor.awaitSingle
 import org.springframework.beans.factory.annotation.Value
@@ -14,7 +13,6 @@ import org.springframework.http.codec.json.Jackson2JsonDecoder
 import org.springframework.http.codec.json.Jackson2JsonEncoder
 import org.springframework.stereotype.Service
 import org.springframework.util.LinkedMultiValueMap
-import org.springframework.util.MultiValueMap
 import org.springframework.web.reactive.function.client.ExchangeStrategies
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.bodyToMono
@@ -28,33 +26,20 @@ class OpenApiWebClient(
     private val webClient: WebClient,
     @Value("\${webclient.config.max-in-memory-size}") private val maxInMemorySize: Int
 ) {
-    private val openApiWebClient =
-        ExchangeStrategies.builder().codecs {
-            it.defaultCodecs().jackson2JsonEncoder(Jackson2JsonEncoder(OpenApiMapper.mapper, MediaType.APPLICATION_JSON))
-            it.defaultCodecs().jackson2JsonDecoder(Jackson2JsonDecoder(OpenApiMapper.mapper, MediaType.APPLICATION_JSON))
-            it.defaultCodecs().maxInMemorySize(MEGA_BYTE * maxInMemorySize)
-        }.build().let {
-            webClient.mutate().exchangeStrategies(it).build()
-        }
-
     suspend fun <R : Any> executeGet(
-        header: RequestHeader,
+        header: LinkedMultiValueMap<String, String>? = LinkedMultiValueMap(),
         hostUri: HostUri,
-        queryParams: MultiValueMap<String, String> = LinkedMultiValueMap(),
+        mapper: ObjectMapper,
+        queryParams: LinkedMultiValueMap<String, String>? = LinkedMultiValueMap(),
         responseKClass: KClass<R>
     ): Either<OpenApiWebClientError, R> =
-        openApiWebClient
+        getOpenApiWebClient(mapper)
             .get()
             .uri(hostUri.domain) {
                 it.path(hostUri.uri).queryParams(UriUtils.encodeQueryParams(queryParams)).build()
             }
             .headers { httpHeaders ->
-                println("${header.accessToken}")
-                println(header.toMultiValueMap())
-                header.toMultiValueMap().getOrNull()?.let {
-                    println(it)
-                    httpHeaders.addAll(it)
-                }
+                httpHeaders.addAll(header)
                 httpHeaders.accept = listOf(MediaType.APPLICATION_JSON)
             }
             .retrieve()
@@ -68,9 +53,23 @@ class OpenApiWebClient(
             .bodyToMono(responseKClass.java)
             .timeout(hostUri.timeout.toJavaDuration())
             .map { either<OpenApiWebClientError, R> { it } }
-            .onErrorResume { Mono.just(OpenApiWebClientError.UnknownError(it.message ?: "WebClient executeGet Error").left()) }
+            .onErrorResume {
+                Mono.just(
+                    OpenApiWebClientError.UnknownError(it.message ?: "WebClient executeGet Error").left()
+                )
+            }
             .awaitSingle()
+
+    private fun getOpenApiWebClient(mapper: ObjectMapper): WebClient =
+        ExchangeStrategies.builder().codecs {
+            it.defaultCodecs().jackson2JsonEncoder(Jackson2JsonEncoder(mapper, MediaType.APPLICATION_JSON))
+            it.defaultCodecs().jackson2JsonDecoder(Jackson2JsonDecoder(mapper, MediaType.APPLICATION_JSON))
+            it.defaultCodecs().maxInMemorySize(MEGA_BYTE * maxInMemorySize)
+        }
+            .build()
+            .let { webClient.mutate().exchangeStrategies(it).build() }
 }
+
 
 sealed class OpenApiWebClientError {
     abstract val message: String

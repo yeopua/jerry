@@ -1,12 +1,10 @@
 package com.jerry.search.place.webclient.response
 
-import java.math.BigDecimal
-
-data class PlaceWebClientResponseForKakao(
+class PlaceWebClientResponseForKakao(
     val documents: List<Document>,
     val meta: Meta
 ) {
-    data class Document(
+    class Document(
         val addressName: String,
         val categoryGroupCode: String,
         val categoryGroupName: String,
@@ -17,17 +15,17 @@ data class PlaceWebClientResponseForKakao(
         val placeName: String,
         val placeUrl: String,
         val roadAddressName: String,
-        val x: BigDecimal,
-        val y: BigDecimal
+        val x: String,
+        val y: String
     )
 
-    data class Meta(
+    class Meta(
         val isEnd: Boolean,
         val pageableCount: Long,
         val sameName: SameName,
         val totalCount: Long
     ) {
-        data class SameName(
+        class SameName(
             val keyword: String,
             val region: List<String>,
             val selectedRegion: String
