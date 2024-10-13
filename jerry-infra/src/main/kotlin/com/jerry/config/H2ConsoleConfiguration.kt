@@ -19,23 +19,3 @@ class H2ConsoleConfiguration {
         server.stop()
     }
 }
-
-// public class H2ConsoleConfig {
-//
-//    @Value("${h2.console.port}")
-//    private Integer port;
-//
-//    private Server webServer;
-//
-//    @EventListener(ContextRefreshedEvent.class)
-//            public void start() throws java.sql.SQLException {
-//        log.info("started h2 console at port {}.", port);
-//        webServer = Server.createWebServer("-webPort", port.toString()).start();
-//    }
-//
-//        @EventListener(ContextClosedEvent.class)
-//                public void stop() {
-//            log.info("stopped h2 console at port {}.", port);
-//            webServer.stop();
-//        }
-// }
