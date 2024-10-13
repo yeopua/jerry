@@ -1,9 +1,7 @@
 
-import arrow.core.Either
 import arrow.core.raise.catch
 import arrow.core.raise.either
 import com.fasterxml.jackson.annotation.JsonInclude
-import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.PropertyNamingStrategies
@@ -23,7 +21,6 @@ object JsonUtils {
         configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
     }
 
-
     fun Any?.toMultiValueMap() = either {
         catch({
             this@toMultiValueMap?.let {
@@ -42,8 +39,8 @@ object JsonUtils {
             this@toSnakeCaseMultiValueMap?.let {
                 snakeCaseMapper
                     .convertValue<Map<String, String>>(it).let {
-                    LinkedMultiValueMap<String, String>().apply { setAll(it) }
-                }
+                        LinkedMultiValueMap<String, String>().apply { setAll(it) }
+                    }
             }
         }) {
             getLogger().error("[JsonUtils][toSnakeCaseMultiValueMap] Object to multiValueMap convert error : ${it.message}", it)

@@ -11,12 +11,12 @@ import kotlin.reflect.KClass
 
 @Service
 class NaverWebClient(
-    private val webClient: OpenApiWebClient,
+    private val webClient: OpenApiWebClient
 ) {
     private val header = NaverRequestHeader()
     private val mapper = WebClientObjectMapper.naver
 
-    suspend fun <R: Any> executeGet(
+    suspend fun <R : Any> executeGet(
         naverHostUri: NaverHostUri,
         queryParams: Any?,
         responseKClass: KClass<R>

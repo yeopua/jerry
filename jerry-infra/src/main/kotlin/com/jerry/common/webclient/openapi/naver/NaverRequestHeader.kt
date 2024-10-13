@@ -6,5 +6,5 @@ class NaverRequestHeader(
     @JsonProperty("X-Naver-Client-Id")
     val id: String = "AcibdRgGB6JzpuDbxIfg",
     @JsonProperty("X-Naver-Client-Secret")
-    val secret: String= "oJfavmnywk"
+    val secret: String = "oJfavmnywk"
 )

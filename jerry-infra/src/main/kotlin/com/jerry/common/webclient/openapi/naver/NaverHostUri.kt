@@ -1,7 +1,6 @@
 package com.jerry.common.webclient.openapi.naver
 
 import com.jerry.common.webclient.HostUri
-import com.jerry.common.webclient.openapi.kakao.KakaoHostUri
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
