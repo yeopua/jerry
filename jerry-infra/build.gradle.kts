@@ -14,5 +14,6 @@ dependencies {
     implementation(libs.caffeine)
     implementation(libs.h2.database)
     implementation(libs.h2.database.r2dbc)
+    implementation(libs.redis)
     testImplementation(libs.springboot.starter.test)
 }

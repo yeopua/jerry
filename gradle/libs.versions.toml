@@ -22,6 +22,7 @@ osdetector = "1.7.3"
 slf4j-api = "2.0.7"
 h2-database-r2dbc = "1.0.0.RELEASE"
 h2-database = "2.3.232"
+redis = "0.7.2"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -65,3 +66,4 @@ netty-resolver-dns-native-macos = { group = "io.netty", name = "netty-resolver-d
 slf4j-api = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j-api" }
 h2-database-r2dbc = { group = "io.r2dbc", name = "r2dbc-h2", version.ref = "h2-database-r2dbc" }
 h2-database = { group = "com.h2database", name = "h2", version.ref = "h2-database" }
+redis = { group = "it.ozimov", name = "embedded-redis", version.ref = "redis" }
