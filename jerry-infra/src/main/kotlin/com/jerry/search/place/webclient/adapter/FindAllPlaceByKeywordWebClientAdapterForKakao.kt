@@ -4,7 +4,7 @@ import CommonError
 import arrow.core.Either
 import arrow.core.raise.either
 import com.jerry.common.webclient.openapi.kakao.KakaoHostUri
-import com.jerry.common.webclient.openapi.kakao.KakaoWebClient
+import com.jerry.common.webclient.openapi.kakao.KakaoOpenApiCallService
 import com.jerry.search.place.domain.Place
 import com.jerry.search.place.webclient.mapper.PlaceWebClientMapper
 import com.jerry.search.place.webclient.request.PlaceWebClientRequestForKakao
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class FindAllPlaceByKeywordWebClientAdapterForKakao(
-    private val webClient: KakaoWebClient,
+    private val webClient: KakaoOpenApiCallService,
     private val mapper: PlaceWebClientMapper
 ) {
     suspend fun invoke(keyword: String): Either<CommonError, List<Place>> = either {

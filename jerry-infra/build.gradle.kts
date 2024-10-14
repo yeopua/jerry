@@ -16,4 +16,14 @@ dependencies {
     implementation(libs.h2.database.r2dbc)
     implementation(libs.redis)
     testImplementation(libs.springboot.starter.test)
+
+    val isMacOS: Boolean = System.getProperty("os.name").startsWith("Mac OS X")
+    val architecture = System.getProperty("os.arch").lowercase()
+    if (isMacOS && architecture == "aarch64") {
+        testImplementation(libs.netty.resolver.dns.native.macos) {
+            artifact {
+                classifier = "osx-aarch_64"
+            }
+        }
+    }
 }

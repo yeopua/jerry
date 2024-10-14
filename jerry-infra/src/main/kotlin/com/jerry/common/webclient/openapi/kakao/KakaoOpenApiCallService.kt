@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
 import kotlin.reflect.KClass
 
 @Service
-class KakaoWebClient(
+class KakaoOpenApiCallService(
     private val webClient: OpenApiWebClient
 ) {
     private val header = KakaoRequestHeader()
