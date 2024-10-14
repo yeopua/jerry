@@ -1,5 +1,6 @@
 package com.jerry.api.search.place
 
+import arrow.core.getOrElse
 import com.jerry.api.search.place.dto.PlaceResponseDto
 import com.jerry.common.ApiResponse
 import org.springframework.http.ResponseEntity
@@ -16,9 +17,15 @@ class PlaceController(
     @GetMapping
     suspend fun getPlaces(
         @RequestParam(name = "keyword") keyword: String
-    ): ResponseEntity<ApiResponse<PlaceResponseDto>> =
-        placeService.getPlaces(keyword).fold(
-            { ApiResponse.error(it.message) },
-            { ApiResponse.ok(it) }
-        )
+    ): ResponseEntity<ApiResponse<PlaceResponseDto>> {
+        Keyword
+            .from(keyword)
+            .getOrElse { return ApiResponse.badRequest(it.message) }
+
+        return placeService.getPlaces(keyword)
+            .fold(
+                { ApiResponse.error(it.message) },
+                { ApiResponse.ok(it) }
+            )
+    }
 }

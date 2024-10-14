@@ -12,6 +12,10 @@ Appenders:
       disableAnsi: false
 
 Loggers:
+  Logger:
+    - name: io.r2dbc.h2.H2Connection # h2 db는 select transaction 지원을 하지 않아 warn 로그가 계속해서 발생 -> mute
+      level: error
+      additivity: false
   Root:
     level: info
     AppenderRef:
