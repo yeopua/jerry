@@ -18,7 +18,7 @@ class NaverOpenApiCallServiceTest {
         runBlocking {
             actual.executeGet(
                 naverHostUri = NaverHostUri.SEARCH_PLACES_BY_KEYWORD,
-                queryParams = PlaceWebClientRequestForNaver.QueryParams("맛집"),
+                queryParams = PlaceWebClientRequestForNaver.QueryParams("ABC"),
                 responseKClass = PlaceWebClientResponseForNaver::class
             )
                 .let {

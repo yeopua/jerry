@@ -1,5 +1,5 @@
 ### Search Place By Keyword
-GET http://localhost:8080/search/place?keyword=맛집
+GET http://localhost:8080/search/place?keyword=ABC
 
 ### KAKAO OpenAPI (Search Place By Keyword)
 GET https://dapi.kakao.com/v2/local/search/keyword.json?query=맛집&size=5

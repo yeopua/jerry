@@ -36,7 +36,7 @@ class OpenApiWebClient(
         getOpenApiWebClient(mapper)
             .get()
             .uri(hostUri.domain) {
-                it.path(hostUri.uri).queryParams(queryParams).build()
+                it.path(hostUri.uri).queryParams(UriUtils.encodeQueryParams(queryParams)).build()
             }
             .headers { httpHeaders ->
                 httpHeaders.addAll(header)
