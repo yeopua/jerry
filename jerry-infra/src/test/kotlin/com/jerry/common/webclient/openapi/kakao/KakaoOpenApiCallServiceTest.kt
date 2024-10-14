@@ -18,7 +18,7 @@ class KakaoOpenApiCallServiceTest {
         runBlocking {
             actual.executeGet(
                 kakaoHostUri = KakaoHostUri.SEARCH_PLACES_BY_KEYWORD,
-                queryParams = PlaceWebClientRequestForKakao.QueryParams("맛집"),
+                queryParams = PlaceWebClientRequestForKakao.QueryParams("ABC"),
                 responseKClass = PlaceWebClientResponseForKakao::class
             )
                 .let {
