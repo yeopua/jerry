@@ -9,6 +9,7 @@ import com.jerry.search.place.domain.Place
 import com.jerry.search.place.webclient.mapper.PlaceWebClientMapper
 import com.jerry.search.place.webclient.request.PlaceWebClientRequestForNaver
 import com.jerry.search.place.webclient.response.PlaceWebClientResponseForNaver
+import getLogger
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -22,7 +23,12 @@ class FindAllPlaceByKeywordWebClientAdapterForNaver(
             queryParams = PlaceWebClientRequestForNaver.QueryParams(keyword),
             responseKClass = PlaceWebClientResponseForNaver::class
         )
+            .onLeft { logger.warn("[FindAllPlaceByKeywordWebClientAdapterForNaver][invoke] ${it.message}") }
             .bind()
             .let { mapper.toDomain(it) }.bind()
+    }
+
+    companion object {
+        private val logger = getLogger()
     }
 }
