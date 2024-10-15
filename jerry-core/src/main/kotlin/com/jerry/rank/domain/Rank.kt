@@ -4,7 +4,7 @@ import NonEmptyString
 
 class Rank(
     val type: RankType,
-    val member: List<Member>
+    val members: List<Member>
 ) {
     class Member(
         val value: NonEmptyString,

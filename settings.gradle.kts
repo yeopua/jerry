@@ -5,6 +5,6 @@ rootProject.name = "jerry"
 include(
     "jerry-api",
     "jerry-core",
-    "jerry-infra"
+    "jerry-infra",
+    "common-utils"
 )
-include("common-utils")

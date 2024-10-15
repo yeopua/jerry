@@ -22,7 +22,7 @@ class RankRedisMapper {
             .let {
                 Rank(
                     type = RankType.getRankType(zSet.key),
-                    member = it
+                    members = it
                 )
             }
     }
