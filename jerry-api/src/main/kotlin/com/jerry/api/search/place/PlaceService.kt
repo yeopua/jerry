@@ -4,16 +4,36 @@ import CommonError
 import arrow.core.Either
 import arrow.core.raise.either
 import com.jerry.api.search.place.dto.PlaceResponseDto
+import com.jerry.rank.domain.RankType
 import com.jerry.search.place.repository.FindAllPlaceByKeywordRepository
+import com.jerry.search.place.repository.IncreaseKeywordScoreRepository
+import getLogger
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import org.springframework.stereotype.Service
 
 @Service
 class PlaceService(
-    private val findAllPlaceByKeywordRepository: FindAllPlaceByKeywordRepository
+    private val findAllPlaceByKeywordRepository: FindAllPlaceByKeywordRepository,
+    private val increaseKeywordScoreRepository: IncreaseKeywordScoreRepository
 ) {
     suspend fun getPlaces(keyword: String): Either<CommonError, PlaceResponseDto> = either {
-        findAllPlaceByKeywordRepository.invoke(keyword)
-            .bind()
-            .let { PlaceResponseDto.from(it) }
+        coroutineScope {
+            findAllPlaceByKeywordRepository.invoke(keyword)
+                .onLeft { logger.error("[PlaceService][getPlaces] ${it.message}") }
+                .onRight {
+                    launch(Job() + Dispatchers.IO) {
+                        increaseKeywordScoreRepository.invoke(RankType.SEARCH_PLACE, keyword).getOrNull()
+                    }
+                }
+                .bind()
+                .let { PlaceResponseDto.from(it) }
+        }
+    }
+
+    companion object {
+        private val logger = getLogger()
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 @Component
 class RankR2dbcMapper {
     fun toEntity(domain: Rank): List<RankR2dbcEntity> {
-        return domain.member.map {
+        return domain.members.map {
             RankR2dbcEntity(
                 type = domain.type,
                 member = it.value.toString(),

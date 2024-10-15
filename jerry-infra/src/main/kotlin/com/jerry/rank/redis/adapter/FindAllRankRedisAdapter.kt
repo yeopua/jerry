@@ -17,14 +17,14 @@ class FindAllRankRedisAdapter(
 ) : FindAllRankRepository {
     override suspend fun invoke(): Either<CommonError, Rank> = either {
         Either.catch {
-            redisClient.zSetIncrementScore(RankType.SEARCH_PLACE.name, "keyword").bind()
-            redisClient.zSetIncrementScore(RankType.SEARCH_PLACE.name, "keyword").bind()
-            redisClient.zSetIncrementScore(RankType.SEARCH_PLACE.name, "keyword").bind()
-            redisClient.zSetIncrementScore(RankType.SEARCH_PLACE.name, "keyword").bind()
-            redisClient.zSetIncrementScore(RankType.SEARCH_PLACE.name, "keyword").bind()
-            redisClient.zSetIncrementScore(RankType.SEARCH_PLACE.name, "abcdefg").bind()
-            redisClient.zSetIncrementScore(RankType.SEARCH_PLACE.name, "abcdefg").bind()
-            redisClient.zSetIncrementScore(RankType.SEARCH_PLACE.name, "abcdefg").bind()
+//            redisClient.zSetIncrementScore(RankType.SEARCH_PLACE.name, "keyword").bind()
+//            redisClient.zSetIncrementScore(RankType.SEARCH_PLACE.name, "keyword").bind()
+//            redisClient.zSetIncrementScore(RankType.SEARCH_PLACE.name, "keyword").bind()
+//            redisClient.zSetIncrementScore(RankType.SEARCH_PLACE.name, "keyword").bind()
+//            redisClient.zSetIncrementScore(RankType.SEARCH_PLACE.name, "keyword").bind()
+//            redisClient.zSetIncrementScore(RankType.SEARCH_PLACE.name, "abcdefg").bind()
+//            redisClient.zSetIncrementScore(RankType.SEARCH_PLACE.name, "abcdefg").bind()
+//            redisClient.zSetIncrementScore(RankType.SEARCH_PLACE.name, "abcdefg").bind()
             redisClient.zSetAllRangeWithScores(RankType.SEARCH_PLACE.name).bind()
         }
             .mapLeft { CommonError.DataSourceError("${it.message}") }.bind()

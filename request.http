@@ -1,5 +1,8 @@
 ### Search Place By Keyword
-GET http://localhost:8080/search/place?keyword=고우가
+GET http://localhost:8080/search/place?keyword=버거킹
+
+### Search rank top-n
+GET http://localhost:8080/rank/search-place
 
 ### KAKAO OpenAPI (Search Place By Keyword)
 GET https://dapi.kakao.com/v2/local/search/keyword.json?query=인천&size=5

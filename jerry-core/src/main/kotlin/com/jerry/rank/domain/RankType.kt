@@ -1,7 +1,9 @@
 package com.jerry.rank.domain
 
-enum class RankType {
-    SEARCH_PLACE
+enum class RankType(
+    val value: String
+) {
+    SEARCH_PLACE("search-place")
     ;
 
     companion object {

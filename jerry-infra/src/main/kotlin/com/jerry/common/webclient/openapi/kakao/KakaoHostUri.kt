@@ -5,11 +5,10 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 enum class KakaoHostUri(
-    val key: String,
     val uri: String,
     val timeout: Duration
 ) {
-    SEARCH_PLACES_BY_KEYWORD("search-places-by-keyword", "/v2/local/search/keyword.json", 5.seconds)
+    SEARCH_PLACES_BY_KEYWORD("/v2/local/search/keyword.json", 5.seconds)
     ;
 
     companion object {
