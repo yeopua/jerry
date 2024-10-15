@@ -63,7 +63,6 @@ subprojects {
         testImplementation(rootProject.libs.kotest.runner.junit5.jvm)
         testImplementation(rootProject.libs.kotest.assertions.core)
         testImplementation(rootProject.libs.kotest.assertions.arrow)
-//        testImplementation(rootProject.libs.kotest.extensions.spring)
         testImplementation(rootProject.libs.kotlinx.coroutines.test)
     }
 
