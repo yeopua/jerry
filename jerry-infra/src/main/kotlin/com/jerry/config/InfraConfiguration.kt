@@ -8,7 +8,8 @@ import org.springframework.context.annotation.Import
         R2dbcConfiguration::class,
         H2ConsoleConfiguration::class,
         RedisEmbeddedConfiguration::class,
-        RedisConfiguration::class
+        RedisConfiguration::class,
+        CaffeineCacheConfiguration::class
     ]
 )
 class InfraConfiguration

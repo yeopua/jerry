@@ -10,6 +10,7 @@ import com.jerry.search.place.webclient.mapper.PlaceWebClientMapper
 import com.jerry.search.place.webclient.request.PlaceWebClientRequestForNaver
 import com.jerry.search.place.webclient.response.PlaceWebClientResponseForNaver
 import getLogger
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -17,6 +18,7 @@ class FindAllPlaceByKeywordWebClientAdapterForNaver(
     private val webClient: NaverOpenApiCallService,
     private val mapper: PlaceWebClientMapper
 ) {
+    @Cacheable("findAllPlaceByKeywordNaver")
     suspend fun invoke(keyword: String): Either<CommonError, List<Place>> = either {
         webClient.executeGet(
             naverHostUri = NaverHostUri.SEARCH_PLACES_BY_KEYWORD,

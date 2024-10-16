@@ -1,5 +1,5 @@
 ### Search Place By Keyword
-GET http://localhost:8080/search/place?keyword=포항
+GET http://localhost:8080/search/place?keyword=농심
 
 ### Search rank top-n
 GET http://localhost:8080/rank/search-place

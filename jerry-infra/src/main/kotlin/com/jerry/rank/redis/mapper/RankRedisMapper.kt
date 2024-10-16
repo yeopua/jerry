@@ -3,9 +3,9 @@ package com.jerry.rank.redis.mapper
 import CommonError
 import arrow.core.Either
 import arrow.core.raise.either
-import com.jerry.rank.redis.entity.ZSetRedisEntity
 import com.jerry.rank.domain.Rank
 import com.jerry.rank.domain.RankType
+import com.jerry.rank.redis.entity.ZSetRedisEntity
 import org.springframework.stereotype.Component
 import toNonEmptyString
 
