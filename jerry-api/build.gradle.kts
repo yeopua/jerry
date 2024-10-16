@@ -14,7 +14,6 @@ dependencies {
     implementation(libs.springboot.starter.aop)
     implementation(libs.springboot.starter.test)
 
-    implementation(libs.blockhound)
     implementation(libs.jackson.module.kotlin)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.kotlinx.coroutines.debug)

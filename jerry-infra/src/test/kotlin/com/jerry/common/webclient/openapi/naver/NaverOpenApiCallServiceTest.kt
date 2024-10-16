@@ -3,7 +3,7 @@ package com.jerry.common.webclient.openapi.naver
 import com.jerry.common.webclient.openapi.OpenApiWebClient
 import com.jerry.search.place.webclient.request.PlaceWebClientRequestForNaver
 import com.jerry.search.place.webclient.response.PlaceWebClientResponseForNaver
-import io.kotest.common.runBlocking
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.web.reactive.function.client.WebClient

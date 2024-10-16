@@ -60,9 +60,6 @@ subprojects {
         testImplementation(rootProject.libs.junit.jupiter)
         testImplementation(rootProject.libs.mockito.kotlin)
         testImplementation(rootProject.libs.mockk)
-        testImplementation(rootProject.libs.kotest.runner.junit5.jvm)
-        testImplementation(rootProject.libs.kotest.assertions.core)
-        testImplementation(rootProject.libs.kotest.assertions.arrow)
         testImplementation(rootProject.libs.kotlinx.coroutines.test)
     }
 
