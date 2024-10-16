@@ -14,7 +14,15 @@ h2 : 2.3.232
 r2dbc-h2 : 1.0.0.RELEASE
 embedded-reis : 0.7.2
 caffeine : 3.1.8
+klint : 11.5.1
+detekt : 1.23.5 
 ```
+- kotlin-arrow : Functional Programming 및 Error Handling 장점으로 모든 구현을 arrow either 처리.
+- h2 : 검색어 랭킹에 대한 장애처리 목적으로 내장된 H2 RDB 사용
+- r2dbc-h2 : Reactive H2 DB 사용.
+- embedded-redis : 검색어 조회 및 TOP-10 API 목적, 중복 실행에 대한 Key
+- caffeine: Repository 외부 Data 가져오는 부분에 대한 Local Cache를 위해 Caffeine Cache를 선택함.
+- klint/detekt : Code Convention을 위해 사용함.
 
 ## Features
 ```
