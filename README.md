@@ -53,7 +53,7 @@ Coroutine, WebClient, Reactive-Redis, R2DBC
   * **[관심사: 뒷단(데이터)]**
   * 외부 Data를 가져오는 DataSource Module
   * jerry-infra를 제외한 다른 Module은 어떠한 Data Source에서 가져오는지에 대한 관심사가 없음
-  * 다른 Module 변경 없이 Data Source를 추가/변경이 쉬움 (Data Source 대한 결합도가 낮음)
+  * 다른 Module 변경 없이 Data Source 추가/변경이 쉬움 (Data Source 대한 결합도가 낮음)
   * Hexagonal Architect
   * Service(Domain)-Repository(Entity)
 
@@ -80,6 +80,7 @@ Coroutine, WebClient, Reactive-Redis, R2DBC
   1. [Redis] 10개의 TOP-N Data 조회 (ZSET Range 조회, Score 내림차순)
   2. **구현하지못함, RDB 데이터는 존재함** / [RDB] Redis 조회 실패 시, RDB 조회
 * **Data Sync Scheduled**
+  * Spring @Scheduled 를 통해 주기적으로 실행함
   * 중복되지 않도록 Aspect 정의 (CheckRunning)
   * N개의 Container 및 서버에 띄워져 있을때도 중복발생하지 않도록 조치
   1. [AOP] CheckRunning
