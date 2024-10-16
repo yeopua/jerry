@@ -8,5 +8,9 @@ import org.springframework.data.relational.core.mapping.Table
 data class RankR2dbcEntity(
     val type: RankType,
     val member: String,
-    val score: Int
+    var score: Int
 ) : AbstractBaseEntity()
+
+fun RankR2dbcEntity.modifyScore(score: Int): RankR2dbcEntity {
+    return apply { this.score = score }
+}

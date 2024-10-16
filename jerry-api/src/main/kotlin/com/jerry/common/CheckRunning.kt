@@ -40,11 +40,15 @@ class CheckRunningAspect(
 
     private suspend fun isRunning(policy: DuplicationRunningPolicy): Boolean {
         val isRunning = findDuplicationRunningPolicyRepository.invoke(policy.redisKey).isRight { !it.toString().isNullOrBlank() }
-        if (isRunning) getLogger().info("[checkDuplicationExecution] isRunning!")
+        if (isRunning) logger.info("[checkDuplicationExecution] isRunning!")
         return isRunning
     }
 
     private suspend fun run(policy: DuplicationRunningPolicy) {
         saveDuplicationRunningPolicyRepository.invoke(policy.redisKey, policy.ttl)
+    }
+
+    companion object {
+        private val logger = getLogger()
     }
 }

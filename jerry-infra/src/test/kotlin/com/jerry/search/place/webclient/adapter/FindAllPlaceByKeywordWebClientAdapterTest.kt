@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test
 import toNonEmptyString
 
 class FindAllPlaceByKeywordWebClientAdapterTest {
-    private val findAllPlaceByKeywordWebClientAdapterForKakao: FindAllPlaceByKeywordWebClientAdapterForKakao = mockk(relaxed = true)
-    private val findAllPlaceByKeywordWebClientAdapterForNaver: FindAllPlaceByKeywordWebClientAdapterForNaver = mockk(relaxed = true)
+    private val findAllPlaceByKeywordWebClientAdapterForKakao: FindAllPlaceByKeywordWebClientAdapterForKakao = mockk()
+    private val findAllPlaceByKeywordWebClientAdapterForNaver: FindAllPlaceByKeywordWebClientAdapterForNaver = mockk()
 
     private val actual = FindAllPlaceByKeywordWebClientAdapter(
         findAllPlaceByKeywordWebClientAdapterForKakao,

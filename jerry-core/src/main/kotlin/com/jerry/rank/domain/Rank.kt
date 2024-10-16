@@ -2,12 +2,19 @@ package com.jerry.rank.domain
 
 import NonEmptyString
 
-class Rank(
+data class Rank(
     val type: RankType,
     val members: List<Member>
 ) {
-    class Member(
+    data class Member(
         val value: NonEmptyString,
         val score: Int
+    )
+}
+
+fun Rank.Member.modifyScore(score: Int): Rank.Member {
+    return Rank.Member(
+        value = this.value,
+        score = score
     )
 }

@@ -30,8 +30,10 @@ class RedisClient(
             .bind()
     }
 
-    suspend fun zSetIncrementScore(key: String, member: String): Either<CommonError.DataSourceError, Unit> = either {
-        Either.catch { reactiveRedisTemplate.opsForZSet().incrementScore(key, member, 1.0).awaitSingle() }
+    suspend fun zSetIncrementScore(key: String, member: String, score: Double = 1.0): Either<CommonError.DataSourceError, Double> = either {
+        Either.catch {
+            reactiveRedisTemplate.opsForZSet().incrementScore(key, member, score).awaitSingle()
+        }
             .onLeft {
                 when (it) {
                     is IllegalArgumentException -> reactiveRedisTemplate.opsForZSet().add(key, member, 1.0)
