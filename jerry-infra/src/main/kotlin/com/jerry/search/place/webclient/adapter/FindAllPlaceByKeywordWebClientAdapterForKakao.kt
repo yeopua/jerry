@@ -11,6 +11,7 @@ import com.jerry.search.place.webclient.request.PlaceWebClientRequestForKakao
 import com.jerry.search.place.webclient.response.PlaceWebClientResponseForKakao
 import getLogger
 import kotlinx.coroutines.coroutineScope
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -18,6 +19,7 @@ class FindAllPlaceByKeywordWebClientAdapterForKakao(
     private val webClient: KakaoOpenApiCallService,
     private val mapper: PlaceWebClientMapper
 ) {
+    @Cacheable("findAllPlaceByKeywordNaver")
     suspend fun invoke(keyword: String): Either<CommonError, List<Place>> = either {
         coroutineScope {
             webClient.executeGet(
