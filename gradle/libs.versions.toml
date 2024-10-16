@@ -3,9 +3,6 @@ kotlin = "1.9.22"
 springboot = "3.3.4"
 arrow-core = "1.2.1"
 kotlinx-coroutines = "1.7.3"
-kotest-core = "5.8.0"
-kotest-assertions-arrow = "1.4.0"
-kotest-extensions-spring = "1.1.3"
 mockito-kotlin = "5.2.1"
 junit-jupiter = "5.10.1"
 detekt = "1.23.5"
@@ -13,12 +10,10 @@ ktlint = "11.5.1"
 jackson = "2.16.1"
 kotlinx-serialization = "1.6.0"
 mockk = "1.13.7"
-blockhound = "1.0.8.RELEASE"
 caffeine = "3.1.8"
 resilience4j = "2.2.0"
 commons-lang = "3.15.0"
 netty-resolver-dns-native-macos = "4.1.114.Final"
-osdetector = "1.7.3"
 slf4j-api = "2.0.7"
 h2-database-r2dbc = "1.0.0.RELEASE"
 h2-database = "2.3.232"
@@ -31,7 +26,6 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 springboot = { id = "org.springframework.boot", version.ref = "springboot" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
-detector = { id = "com.google.osdetector", version.ref = "osdetector" }
 
 [libraries]
 springboot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web", version.ref = "springboot" }
@@ -47,17 +41,12 @@ kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-cor
 kotlinx-coroutines-reactor = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-reactor", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-debug = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-debug", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
-kotest-runner-junit5-jvm = { group = "io.kotest", name = "kotest-runner-junit5-jvm", version.ref = "kotest-core" }
-kotest-assertions-core = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest-core" }
-kotest-assertions-arrow = { group = "io.kotest.extensions", name = "kotest-assertions-arrow", version.ref = "kotest-assertions-arrow" }
-kotest-assertions-spring = { group = "io.kotest.extensions", name = "kotest-assertions-spring", version.ref = "kotest-extensions-spring" }
 mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockito-kotlin" }
 junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit-jupiter" }
 jackson-module-kotlin = { group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin", version.ref = "jackson" }
 jackson-dataformat-yaml = { group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-yaml", version.ref = "jackson" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
-blockhound = { group = "io.projectreactor.tools", name = "blockhound", version.ref = "blockhound" }
 caffeine = { group = "com.github.ben-manes.caffeine", name = "caffeine", version.ref = "caffeine" }
 resilience4j-kotlin = { group = "io.github.resilience4j", name = "resilience4j-kotlin", version.ref = "resilience4j" }
 resilience4j-springboot = { group = "io.github.resilience4j", name = "resilience4j-spring-boot2", version.ref = "resilience4j" }

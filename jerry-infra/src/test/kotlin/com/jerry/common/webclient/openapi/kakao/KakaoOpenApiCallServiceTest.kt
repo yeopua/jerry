@@ -3,7 +3,7 @@ package com.jerry.common.webclient.openapi.kakao
 import com.jerry.common.webclient.openapi.OpenApiWebClient
 import com.jerry.search.place.webclient.request.PlaceWebClientRequestForKakao
 import com.jerry.search.place.webclient.response.PlaceWebClientResponseForKakao
-import io.kotest.common.runBlocking
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.web.reactive.function.client.WebClient
