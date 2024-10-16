@@ -67,6 +67,17 @@ Coroutine, WebClient, Reactive-Redis, R2DBC
   * RedisEntity
   * WebclientRequest/WebclientResponse
 
+### API 테스트
+**request.http** file에서 API 테스트 가능
+```
+### Search Place By Keyword
+GET http://localhost:8080/search/place?keyword=서울
+
+### Search rank top-n
+GET http://localhost:8080/rank/search-place
+```
+
+
 ### Service Flow
 * **Search Keyword From OpenAPI**
   1. [WebClient] WebClient를 통해 Open API 호출
