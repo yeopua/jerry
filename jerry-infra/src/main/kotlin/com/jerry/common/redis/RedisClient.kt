@@ -3,6 +3,7 @@ package com.jerry.common.redis
 import CommonError
 import arrow.core.Either
 import arrow.core.raise.either
+import com.jerry.rank.redis.entity.ZSetRedisEntity
 import kotlinx.coroutines.reactive.awaitSingle
 import org.springframework.data.domain.Range
 import org.springframework.data.redis.core.ReactiveRedisTemplate
@@ -43,7 +44,7 @@ class RedisClient(
             .bind()
     }
 
-    suspend fun zSetReverseRangeWithScores(key: String, start: Long, end: Long): Either<CommonError.DataSourceError, ZSet> = either {
+    suspend fun zSetReverseRangeWithScores(key: String, start: Long, end: Long): Either<CommonError.DataSourceError, ZSetRedisEntity> = either {
         Either.catch {
             val range = Range.Bound.inclusive(start) to Range.Bound.inclusive(end)
             reactiveRedisTemplate.opsForZSet().reverseRangeWithScores(key, Range.of(range.first, range.second)).collectList()
@@ -53,7 +54,7 @@ class RedisClient(
             .toZSet(key)
     }
 
-    suspend fun zSetAllRangeWithScores(key: String): Either<CommonError.DataSourceError, ZSet> = either {
+    suspend fun zSetAllRangeWithScores(key: String): Either<CommonError.DataSourceError, ZSetRedisEntity> = either {
         Either.catch {
             val range = Range.Bound.inclusive(0L) to Range.Bound.inclusive(-1L)
             reactiveRedisTemplate.opsForZSet().rangeWithScores(key, Range.of(range.first, range.second)).collectList()
@@ -63,15 +64,15 @@ class RedisClient(
             .toZSet(key)
     }
 
-    private suspend fun Mono<List<ZSetOperations.TypedTuple<Any>>>.toZSet(key: String): ZSet {
+    private suspend fun Mono<List<ZSetOperations.TypedTuple<Any>>>.toZSet(key: String): ZSetRedisEntity {
         return this
             .awaitSingle()
             .mapNotNull { typedTuple ->
                 when (typedTuple.value != null) {
-                    true -> ZSet.Data(value = "${typedTuple.value}", score = typedTuple.score ?: 0.0)
+                    true -> ZSetRedisEntity.Data(value = "${typedTuple.value}", score = typedTuple.score ?: 0.0)
                     false -> null
                 }
             }
-            .let { ZSet(key, it) }
+            .let { ZSetRedisEntity(key, it) }
     }
 }

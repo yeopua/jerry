@@ -1,6 +1,6 @@
-package com.jerry.common.redis
+package com.jerry.rank.redis.entity
 
-data class ZSet(
+data class ZSetRedisEntity(
     val key: String,
     val data: List<Data>
 ) {
