@@ -1,5 +1,5 @@
 ### Search Place By Keyword
-GET http://localhost:8080/search/place?keyword=버거킹
+GET http://localhost:8080/search/place?keyword=포항
 
 ### Search rank top-n
 GET http://localhost:8080/rank/search-place

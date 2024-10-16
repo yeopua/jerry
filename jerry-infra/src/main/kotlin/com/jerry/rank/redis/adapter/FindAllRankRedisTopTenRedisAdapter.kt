@@ -11,7 +11,7 @@ import com.jerry.rank.repository.FindAllRankTopTenRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-class FindAllRankRedisTopTenAdapter(
+class FindAllRankRedisTopTenRedisAdapter(
     private val redisClient: RedisClient,
     private val mapper: RankRedisMapper
 ) : FindAllRankTopTenRepository {
